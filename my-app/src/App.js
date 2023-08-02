@@ -5,6 +5,7 @@ import BookTable from './components/BookTable';
 import DisplayBoard from './components/DisplayBoard';
 import CreateBook from './components/CreateBook';
 import { getAllBooks, createBook } from './services/BookService';
+import { getTodos } from './services/TodoService'
 import Footer from './components/Footer';
 
 function App () {
@@ -12,14 +13,19 @@ function App () {
   const [bookShelf, setBookShelf] = useState({});
   const [books, setBooks] = useState([]);
   const [numberOfBooks, setNumberBooks] = useState(0);
-
+  const [todo, setTodo] = useState([])
   const handleSubmit = () => {
       createBook(bookShelf)
         .then(() => {
           setNumberBooks(numberOfBooks+1);
       });
   }
-
+  const getTodo = () =>{
+    getTodos()
+    .then(data => {
+      setTodo(data)
+    })
+  }
   const getAllBook = () => {
     getAllBooks()
       .then(data => {
@@ -53,8 +59,9 @@ function App () {
         <DisplayBoard 
           numberOfBooks={numberOfBooks} 
           getAllBook={getAllBook} 
+          getTodo={getTodo}
         />
-        <BookTable books={books} />
+        <BookTable books={books} todo = {todo} />
         <Footer />
       </div>
     </div>

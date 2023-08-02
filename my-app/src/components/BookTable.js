@@ -1,16 +1,19 @@
-const BookTable = ({books}) => {
+
+const BookTable = ({books, todo}) => {
 
     if (books.length === 0) return null;
-
+    console.log(todo[0])
     return(
+        
         <div className="table-wrapper">
+            
             <div className="table-box">
                 <h2>My Books</h2>
                 <div className="table-scroll">
                     <table>
                         <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>{todo[0].todo}</th>
                             <th>Book</th>
                             <th>Category</th>
                             <th>Author</th>
